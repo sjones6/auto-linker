@@ -1,7 +1,7 @@
 An example of this project in action can be found a spenceralanjones.com/sandbox/autolinker.
 
 
-<b>Project Structure</b>
+Project Structure
 
 API/ contains custom PHP API for receiving and returning JSON.
 
