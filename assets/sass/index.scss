@@ -1,0 +1,39 @@
+/************************************************************
+** SETUP 
+*************************************************************/
+
+/*SASS DEFAULTS*/
+@import 'variables';
+@import 'mixins';
+    
+/* Display resets */
+@import 'resets';
+
+/* Display Defaults */
+@import 'classes';
+@import 'setup';
+    
+/************************************************************
+** PAGE 
+*************************************************************/
+
+/** Header **/
+@import 'header';
+
+/** Footer **/
+@import 'footer';
+
+
+/** Front Page **/
+@import 'front-page';
+
+/** Pages Here **/
+
+
+/************************************************************
+** Responsive Design 
+*************************************************************/
+
+/* Mobile Display */
+@import 'tablet';
+@import 'mobile';

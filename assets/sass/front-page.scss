@@ -1,0 +1,31 @@
+/***************************************************** PAGE CONTENTS
+****************************************************/
+#sandbox-wrapper {
+  width: 95%;
+  border-top: 1px solid black;
+  margin: 0 auto;
+  padding-top: 1em; 
+  font-size: 1.75em;
+}
+
+.project-title {
+  font-size: 1.6em; }
+
+.project-description {
+  font-size: 1.6em;
+  color: #808080; }
+
+.auto-linker-ref {
+    color: #404040;
+}
+
+/* TODO List */
+
+#todo {
+    width: 95%;
+    margin: 0 auto;
+    
+    ul {
+        font-size: 1.75em;
+    }
+}
