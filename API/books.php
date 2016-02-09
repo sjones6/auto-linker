@@ -1,6 +1,8 @@
 <?php
 
-require('book_names.class.php');
+namespace App\API;
+
+use App\API\Resources\Books\BookName;
 
 //Class = BookName
 //Parameters: 1- default book name; 2- secondary names in array
