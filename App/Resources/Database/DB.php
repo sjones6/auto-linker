@@ -20,7 +20,7 @@ $capsule->addConnection(array(
 $capsule->bootEloquent();
 
 /*
-class DB
+class DB f
 {
 
   public function __construct() {
