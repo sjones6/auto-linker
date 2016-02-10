@@ -1,8 +1,8 @@
 <?php
 
-namespace App\API;
+namespace App;
 
-use App\API\Resources\Books\BookName;
+use App\Resources\Books\BookName as BookName;
 
 //Class = BookName
 //Parameters: 1- default book name; 2- secondary names in array

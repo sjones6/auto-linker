@@ -1,5 +1,8 @@
 {
+  "require": {
+    "illuminate/database": "*"
+  },
   "autoload": {
-    "psr-4": {"App\\": "API/"}
+    "psr-4": {"App\\": "App/"}
   }
 }

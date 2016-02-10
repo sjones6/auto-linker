@@ -4,19 +4,10 @@
 //Uncomment Bluehost db credentials.
 
 //Localhost
-/*
 $db_hostname = 'localhost';
 $db_username = 'root';
 $db_password = '1078';
 $db_database = 'texts';
-*/
-
-//Bluehost 
-$db_hostname = 'localhost';
-$db_username = 'spencfm0_alinker';
-$db_password = 'gohome';
-$db_database = 'spencfm0_autolinkerTexts';
-
 
 $mysqlDBString = "mysql:host=" . $db_hostname . ";dbname=" . $db_database;
 

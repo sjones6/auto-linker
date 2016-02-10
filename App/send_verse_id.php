@@ -4,7 +4,6 @@
 * And returns an array of verse ID's in a JSON object.
 */
 
-
 //Confirm all data is received and is the expected type
 if (    ( isset($_GET['book']) ) &&
         ( !preg_match('/\W/', $_GET['book']) ) &&
@@ -13,15 +12,15 @@ if (    ( isset($_GET['book']) ) &&
         ( isset($_GET['verse']) ) &&
         ( !preg_match('/\D/', $_GET['verse']) )
     ) {
-            
+
     require('db_creds.php');
-    
+
     $book = $_GET['book'];
-    $ch = $_GET['chapter'];   
+    $ch = $_GET['chapter'];
     $verse = $_GET['verse'];
 
     //prepare MySQL statement and bind parameters
-    $get_verse_id_query = $mysqli->prepare("SELECT id FROM verses 
+    $get_verse_id_query = $mysqli->prepare("SELECT id FROM verses
         WHERE Book = ? AND
         Chapter = ? AND
         Verse = ?");
@@ -39,13 +38,13 @@ if (    ( isset($_GET['book']) ) &&
             echo 'none';
         }
     } else { //query for entry ID fails
-        
+
         echo("Sorry, we couldn't process that request.");
-        
+
     }
-    
+
 } else { //GET request invalide
-            
+
     echo("Sorry, we couldn't process that request.");
-            
+
 }

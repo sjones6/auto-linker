@@ -15,6 +15,11 @@ ini_set("display_errors", 1);
 require __DIR__ . '/../vendor/autoload.php';
 
 
+use App\Resources\Database\DB as DB;
+
+$verse = DB::table('verses')->where('id' '=', 0)->get();
+var_dump($verse);
+
 //Confirm all data is received and is the expected type
 if (    ( isset($_GET['book']) ) &&
         ( preg_match('/\d*\s?\w*/', $_GET['book']) ) &&
@@ -28,7 +33,7 @@ if (    ( isset($_GET['book']) ) &&
 
     //Add file for your local environment.
     //require('db_creds.php');
-    include('Resources/DB/db_creds_local.php');
+    include('Resources/Database/db_creds.php');
   //  include('Resources/Books/book_names.class.php');
 
     //Check book name for match in either primary (=database form) or secondary form.

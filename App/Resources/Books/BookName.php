@@ -1,6 +1,6 @@
 <?php
 
-namespace App\API\Resources\Books;
+namespace App\Resources\Books;
 
 class BookName {
 
@@ -8,7 +8,7 @@ class BookName {
     private $secondary_names = array();
 
     //first parameter is a string, second parameter is an array of strings.
-    function __construct($a, $b) {
+    public function __construct($a, $b) {
 
         $this->default_name = $a;
         $this->secondary_names = $b;
