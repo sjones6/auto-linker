@@ -1,10 +1,11 @@
 An example of this project in action can be found a spenceralanjones.com/sandbox/autolinker.
 
-Project Structure
+<h1>Project Structure</h1>
 
 index.php Head file for API. Instatiates dependencies and calls App/start.php.
 
-App/ Contains custom PHP API for receiving and returning JSON. [Note: This code is being refactored to use Eloquent's ORM at the moment. Pardon my mess.]
+<h2>App/</h2> 
+Contains custom PHP API for receiving and returning JSON. [Note: This code is being refactored to use Eloquent's ORM at the moment. Pardon my mess.]
 
 config/ Instantiates Capsule database connection.
 
