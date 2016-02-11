@@ -1,29 +1,24 @@
 <?php
-/*This accepts a GET request with four parameters:
-* Book (string)
-* Chapter (Int)
-* Verse (Int)
-* Closing Verse (Int or 'not-range')
-*
-* The return value is a JSON object with the book, chapter, verse, and text
-* of the verse as keys or an error as key. */
 
-//Comment out for production.
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-require __DIR__ . '/../vendor/autoload.php';
+use App\Models\SearchController as SearchController;
+use App\Models\Text as Text;
 
 
-use App\Resources\Database\DB as DB;
+//$verse = SearchController::retrieve_verse($book,$chapter,$verse,$range);
+$verse = SearchController::retrieve_verse('Genesis','1','1',1);
 
-$verse = DB::table('verses')->where('id' '=', 0)->get();
-var_dump($verse);
+foreach ($verse as $v) {
+  var_dump($v->ET);
+  echo ('<br>');
+}
+
+//echo($verse->Verse . $verse->Book . $verse->Chapter . $verse->id);
+
 
 //Confirm all data is received and is the expected type
-if (    ( isset($_GET['book']) ) &&
-        ( preg_match('/\d*\s?\w*/', $_GET['book']) ) &&
-        ( isset($_GET['chapter']) ) &&
+//if (    ( isset($_GET['book']) ) &&
+//        ( preg_match('/\d*\s?\w*/', $_GET['book']) ) &&
+/*        ( isset($_GET['chapter']) ) &&
         ( !preg_match('/\D/', $_GET['chapter']) ) &&
         ( isset($_GET['verse']) ) &&
         ( !preg_match('/\D/', $_GET['verse']) ) &&
@@ -112,6 +107,6 @@ if (    ( isset($_GET['book']) ) &&
 
     echo( json_encode( array("error" => "Sorry, we couldn't process that request.") ) );
 
-}
+} */
 
 ?>
