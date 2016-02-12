@@ -18,7 +18,8 @@ class BookName {
     //the default name is the db term.
     public function return_default_name($x) {
 
-        if ($x === $this->default_name) {
+        if ( $x === $this->default_name ) {
+
             return $this->default_name;
 
         } else {

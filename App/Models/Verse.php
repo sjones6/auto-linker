@@ -18,7 +18,7 @@ class Verse extends Eloquent
 
   }
 
-  public static function retrieve__range_id($book, $chapter, $range) {
+  public static function retrieve_range_id($book, $chapter, $range) {
 
     return parent::where('Book', '=', $book)
             ->where('Chapter', '=', $chapter)
