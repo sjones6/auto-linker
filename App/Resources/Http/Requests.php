@@ -36,19 +36,42 @@ class Requests {
 
           $verse = Verse::retrieve_id($bookDefault, $query['chapter'], $query['verse']);
 
-          $text = Text::retrieve_single_text($verse->id);
+          $text = Text::retrieve_single_text($verse['id']);
 
-          return($text);
+          $verse['ET'] = $text[0]->ET;
 
-        } else { //Multi-verse request
+          return($verse);
 
-          //All return values from Verse and Text calls are Eloquent ORMs.
-          $verse_id = Verse::retrieve_id($bookDefault, $query['chapter'], $query['verse']);
-          $range_id = Verse::retrieve_range_id($bookDefault, $query['chapter'], $query['closingVerse']);
+        } else if ( $query['verse'] < $query['closingVerse'] ) { //Multi-verse request
 
-          $texts = Text::retrieve_multiple_texts($verse_id->id, $range_id->id);
+          // Returns an array.
+          $verse = Verse::retrieve_id($bookDefault, $query['chapter'], $query['verse']);
+          $range = Verse::retrieve_range_id($bookDefault, $query['chapter'], $query['closingVerse']);
 
-          return($texts);
+          if ( ($range['id'] - $verse['id']) < 20 ) {
+
+            // $texts is a string.
+            $texts = Text::retrieve_multiple_texts($verse['id'], $range['id']);
+
+            $return = array(
+                      'book' => $verse['book'],
+                      'chapter' => $verse['chapter'],
+                      'verse' => $verse['verse'],
+                      'closingChapter' => $range['chapter'],
+                      'closingVerse' => $range['verse'],
+                      'ET' => $texts,
+            );
+
+            return($return);
+
+          } else {
+
+            return array('Error' => 'Cannot return a range more than 20 verses.');
+          }
+
+        } else if ( $query['verse'] > $query['closingVerse'] ) {
+
+          return json_encode( array('Error' => 'Invalid verse range. End of range cannot be smaller than start.') );
 
         }
 
@@ -59,7 +82,8 @@ class Requests {
 
     } else {
 
-      return false;
+      return json_encode( array('Error' => 'Request incomplete.') );
+
     }
 
   }

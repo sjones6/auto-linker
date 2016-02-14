@@ -1,4 +1,9 @@
 <?php
+/**
+* This procedural version has been replaced
+* with an OO and namespaced version.
+**/
+
 /*This accepts a GET request with four parameters:
 * Book (string)
 * Chapter (Int)

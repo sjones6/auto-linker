@@ -11,19 +11,35 @@ class Verse extends Eloquent
 
   public static function retrieve_id($book, $chapter, $verse) {
 
-    return parent::where('Book', '=', $book)
+    $verse = parent::where('Book', '=', $book)
             ->where('Chapter', '=', $chapter)
             ->where('Verse', '=', $verse)
             ->first();
+
+    $return = array('id' => $verse->id,
+                    'book' => $verse->Book,
+                    'chapter' => $verse->Chapter,
+                    'verse' => $verse->Verse);
+
+    return $return;
 
   }
 
   public static function retrieve_range_id($book, $chapter, $range) {
 
-    return parent::where('Book', '=', $book)
+    $closingVerse;
+
+    $verse = parent::where('Book', '=', $book)
             ->where('Chapter', '=', $chapter)
-            ->where('Verse', '=', $range)
+            ->where('Verse', '<=', $range)
+            ->orderBy('id', 'desc')
             ->first();
+
+    $return = array('id' => $verse->id,
+                    'chapter' => $verse->Chapter,
+                    'verse' => $verse->Verse);
+
+    return $return;
 
   }
 

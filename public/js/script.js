@@ -1,7 +1,7 @@
 
 
 ( function(ns) {
-    
+
     ns.linker = function(params) {
 
         var xhttp, oldPValue, pArray, pNumber, re, results, resultsLength, currentResult;
@@ -23,7 +23,7 @@
         }
 
 
-        //Find all p elements and search for possible verse references. 
+        //Find all p elements and search for possible verse references.
         //Each reference is wrapped in a span with a class .text-linker.
         pArray = document.getElementsByTagName("p");
         pNumber = pArray.length;
@@ -35,7 +35,7 @@
 
             //find all possible references in current p and sort array to remove duplicates.
             re = new RegExp(/(\d*\s?\w+)\s*(\d+)[\.,;:](\d+)[\u2014\u2013-]?(\d*)/gi);
-            results = uniq_fast( oldPValue.match(re) ); 
+            results = uniq_fast( oldPValue.match(re) );
             resultsLength = results.length;
 
             //iterate over p wrapping each reference in a span
@@ -53,7 +53,7 @@
 
         for ( var i = 0; i < tagsNumber; i++ ) {
             tagsArray[i].addEventListener("click", function(event) {
-                
+
                 var that = this;
                 //testing
                 /*var time1 = Date.now();
@@ -63,9 +63,9 @@
                 var findReferenceRE = new RegExp(/(\d*\s*\w+)\s*(\d+)[\.,:;](\d+)[\u2014\u2013-]?(\d*)/);
                 var results = findReferenceRE.exec(linkText);
                 var resultsNumber = results.length;
-            
+
                 //remove leading spaces on book names.
-                for ( var i = 0; i < resultsNumber; i++ ) {   
+                for ( var i = 0; i < resultsNumber; i++ ) {
                     results[i] = ( results[i] ) ? results[i].replace(/^\s/, '') : 'not-range';
                 }
 
@@ -101,10 +101,10 @@
                     getParameters[1] = "chapter=" + results[2];
                     getParameters[2] = "verse=" + results[3];
                     getParameters[3] = "closingVerse=" + results[4];
-                    
+
                     $requestURL = 'API/send_verse.php?' + getParameters.join('&');
 
-                    xhttp.open('GET', 
+                    xhttp.open('GET',
                                $requestURL,
                                true);
                     xhttp.send(null);
@@ -112,7 +112,7 @@
 
                 function displayResults(result) {
                     //result parameter is a JSON object.
-                    
+
                     var divs = document.getElementsByClassName('auto-linker').length;
                     if ( divs != 0 ) {
                         var linkDivs = document.getElementsByClassName('auto-linker');
@@ -123,10 +123,15 @@
                     }
 
                     if (result.error) {
+
                         console.log("Error Message: " + result.error);
+
                     } else {
-                        var node, html, div, divStyle;
-                        
+                        var node,
+                        html,
+                        div,
+                        divStyle;
+
                         var div = document.createElement('div');
                         div.setAttribute("class", "auto-linker");
                         document.body.appendChild(div);
@@ -137,30 +142,30 @@
                         var text = result.ET.replace(re3, '');
                         var re4 = new RegExp('{([^}]*)}(.*)Literally "[^"]*"', 'g');
                         var text = text.replace(re4, '$1');
-                        
-                        
+
+
                         divStyle = "position: absolute; z-index: 9999; width: auto;";
                         divStyle += "display: block;"
                         divStyle += "border: 2px solid black;";
                         divStyle += "padding: 10px;";
                         divStyle += "background: white;";
-                        
+
                         div.style.cssText += ';' + divStyle;
-                        
-                        var windowWidth = window.innerWidth ||  
+
+                        var windowWidth = window.innerWidth ||
                             document.documentElement.clientWidth ||
                             document.body.clientWidth;
-                        
+
                         console.log(windowWidth);
-                        
+
                         var linkHeight = that.offsetHeight;
                         var linkTop = that.offsetTop
                         var rect = that.getBoundingClientRect();
                         div.style.top = (rect.top > 100) ? linkTop + linkHeight + "px" : linkTop + 30 + "px";
-                        div.style.width = ( windowWidth > 680 ) 
-                            ? ( windowWidth / 3 ) + "px" 
-                            : ( windowWidth - 50 ) + "px"; 
-                        
+                        div.style.width = ( windowWidth > 680 )
+                            ? ( windowWidth / 3 ) + "px"
+                            : ( windowWidth - 50 ) + "px";
+
                         if ( windowWidth > 680 ) {
                             if (rect.left < ( windowWidth / 2 ) ) {
                                 div.style.left = rect.left + "px";
@@ -177,23 +182,23 @@
                         html += "<p class='auto-link-et'>" + text + " (LEB)</p>";
 
                         div.innerHTML = html;
-                        
+
                         var closer = document.createElement('div');
-                        var closerStyle 
+                        var closerStyle
                         closerStyle = "position: absolute;";
                         closerStyle += "top: 10px; right: 10px;";
                         closerStyle += "font-family: sans-serif;";
                         closer.style.cssText += ';' +  closerStyle;
                         closer.innerHTML = "x";
                         div.appendChild(closer);
-                        
+
                         closer.addEventListener("click", function() {
                             var linkDivs = document.getElementsByClassName('auto-linker');
 
                             while (linkDivs[0]) {
                                 linkDivs[0].parentNode.removeChild(linkDivs[0]);
                             }
-                        });   
+                        });
                     }
 
                 //testing

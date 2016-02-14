@@ -8,12 +8,6 @@ $request = Request::make_request_object();
 
 $verses = Request::parse_requests($request);
 
-foreach($verses as $verse) {
-
-  var_dump($verse->ET);
-  echo '<br>';
-  
-}
-
+echo json_encode($verses);
 
 ?>
